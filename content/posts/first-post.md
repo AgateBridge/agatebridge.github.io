@@ -1,7 +1,7 @@
 +++
 title = 'Documenting Your Session the Tmux Way'
 date = 2023-10-26T19:40:42-05:00
-draft = true
+draft = false
 +++
 
 ![Example Image](/img/tmux.png#center)
