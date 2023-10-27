@@ -1,4 +1,4 @@
-baseURL = "https://blog.agatebridge.com"
+baseURL = "https://blog.agatebridge.online"
 theme = "hugo-ficurinia"
 title = "Tech Blog"
 languageCode = "en"
