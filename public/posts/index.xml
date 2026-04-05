@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><?xml-stylesheet href="/feed_style.xsl" type="text/xsl"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="https://www.rssboard.org/media-rss">
+  <channel>
+    <title>Posts on Tech Blog</title>
+    <link>http://localhost:1313/posts/</link>
+    <description>Recent content in Posts on Tech Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <managingEditor>email@me.com</managingEditor>
+    <webMaster>email@me.com</webMaster>
+    <lastBuildDate>Thu, 26 Oct 2023 19:40:42 -0500</lastBuildDate><atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" /><icon>http://localhost:1313/logo.svg</icon>
+    
+    
+    <item>
+      <title>Documenting Your Terminal Session: The Tmux Way</title>
+      <link>http://localhost:1313/posts/capture-terminal/</link>
+      <pubDate>Thu, 26 Oct 2023 19:40:42 -0500</pubDate>
+      <author>email@me.com</author>
+      <guid>http://localhost:1313/posts/capture-terminal/</guid>
+      <description><![CDATA[<p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  
+      
+      
+  <picture class="d-block text-center" >
+  <img class="img-fluid" src="http://localhost:1313/img/tmux.png?v=35d21748888019fcc846e7c27e835460#center" alt="Example Image" loading="lazy" height="160" width="608" />
+</picture>
+</p>
+<h1 id="premise">Premise:</h1>
+<p>Why would someone want to record their terminal session? Perhaps you&rsquo;re doing a profesisonal pentest, or are just forgetful
+like I am when it comes to HackTheBox, recording solutions, or even planning to do a writeup in the future.</p>
+<p>No matter what your reasoning, the tmux-logging pluggin is here to save you some time, if you&rsquo;re willing to put some back into it. Below are general directions for a *.nix system.</p>
+<h3 id="requirements">Requirements:</h3>
+<ul>
+<li>Tmux</li>
+<li>Tmux plugin manager (<a href="https://github.com/tmux-plugins/tpm">https://github.com/tmux-plugins/tpm</a>)</li>
+<li>Tmux-logging (<a href="https://github.com/tmux-plugins/tmux-logging/tree/master">https://github.com/tmux-plugins/tmux-logging/tree/master</a>)</li>
+</ul>
+<h2 id="tmux-config">Tmux config:</h2>
+<p>Here you will define the plugins to be used, and what path your logs will save to via a variable. That variable is defined later.</p>
+<pre tabindex="0"><code class="language-#" data-lang="#">set -g @plugin &#39;tmux-plugins/tpm&#39;
+set -g @plugin &#39;tmux-plugins/tmux-sensible&#39;
+set -g @plugin &#39;tmux-plugins/tmux-logging&#39;
+
+
+# Set logging directory
+set -g @logging-path $PWD
+
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run &#39;~/.tmux/plugins/tpm/tpm&#39;
+</code></pre><h2 id="tmux-logging-modificaitons">Tmux-Logging Modificaitons:</h2>
+<p>Tmux-logging is made up of .sh scripts, here you can adjust as you like as there is no built in auto start functionality.</p>
+<p>~/.tmux/plugins/tmux-logging/scripts/variables.sh</p>
+<p>Rename your &ldquo;default_logging_filename&rdquo; to adopt the name of the folder/project you are currently in.</p>
+<pre tabindex="0"><code class="language-#" data-lang="#">default_logging_path=&#34;$HOME&#34;
+logging_path=$(tmux show-option -gqv &#34;@logging-path&#34;)
+logging_path=${logging_path:-$default_logging_path}
+
+** default_logging_filename=&#34;tmux-$(basename $PWD).log&#34; **
+logging_filename=$(tmux show-option -gqv &#34;@logging-filename&#34;)
+logging_filename=${logging_filename:-$default_logging_filename}
+</code></pre><h2 id="script-to-automatically-start-tmux-with-logging">Script to automatically start tmux with logging:</h2>
+<p>This is my go to script when I start a HTB lab. This is later via a bash alias.</p>
+<p>Full credit to these guides on both tmux session and window automation, and the &ldquo;send-keys&rdquo; options:<br>
+<a href="https://how-to.dev/how-to-create-tmux-session-with-a-script">https://how-to.dev/how-to-create-tmux-session-with-a-script</a></p>
+<p><a href="https://tao-of-tmux.readthedocs.io/en/latest/manuscript/10-scripting.html">https://tao-of-tmux.readthedocs.io/en/latest/manuscript/10-scripting.html</a></p>
+<p>Note: This is just the path to your script:</p>
+<p>/path/to/your/capture_tmux.sh</p>
+<pre tabindex="0"><code>#!/bin/bash
+
+tmux new-session -d -s $session
+
+window=0
+tmux rename-window -t $session:$window &#39;main&#39;
+tmux send-keys -t $session:$window &#39;/home/$USER/.tmux/plugins/tmux-logging/scripts/toggle_logging.sh&#39; Enter
+
+tmux attach-session -t $session
+</code></pre><h2 id="alias-command-to-startup-tmux-easily">Alias command to startup Tmux easily:</h2>
+<p>Here is the alias mentioned above.</p>
+<p>~/.{bash/zsh/fish}.rc</p>
+<p><code>alias capture=/path/to/your/capture_tmux_session.sh'</code></p>
+<p>Don&rsquo;t forget to chmod +x!</p>
+<h2 id="result">Result</h2>
+<p>Once &ldquo;capture&rdquo; is typed into your terminal of choice a tmux session is created, with the name &lsquo;main&rsquo;, and the &ldquo;toggle_logging.sh&rdquo; script is started. Once ran you attach to the session. Seamless as can be on the user&rsquo;s end, feel free to shoot me a message if you have any questions about it, enjoy!</p>
+]]></description>
+      
+    </item>
+    
+    
+  </channel>
+</rss>

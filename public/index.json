@@ -1,0 +1,28 @@
+
+{
+    
+    
+    
+    
+    
+    
+    
+    
+        
+        
+        
+    
+        
+        
+        
+    
+        
+        
+        
+    
+    "articles": [{"date":"2023-10-26","image":"","imageAlt":"","link":"http://localhost:1313/posts/capture-terminal/","summary":"\u003cp\u003e\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n  \n  \n  \n      \n      \n  \u003cpicture class=\"d-block text-center\" \u003e\n  \u003cimg class=\"img-fluid\" src=\"http://localhost:1313/img/tmux.png?v=35d21748888019fcc846e7c27e835460#center\" alt=\"Example Image\" loading=\"lazy\" height=\"160\" width=\"608\" /\u003e\n\u003c/picture\u003e\n\u003c/p\u003e\n\u003ch1 id=\"premise\"\u003ePremise:\u003c/h1\u003e\n\u003cp\u003eWhy would someone want to record their terminal session? Perhaps you\u0026rsquo;re doing a profesisonal pentest, or are just forgetful\nlike I am when it comes to HackTheBox, recording solutions, or even planning to do a writeup in the future.\u003c/p\u003e\n\u003cp\u003eNo matter what your reasoning, the tmux-logging pluggin is here to save you some time, if you\u0026rsquo;re willing to put some back into it. Below are general directions for a *.nix system.\u003c/p\u003e","tags":[],"title":"Documenting Your Terminal Session: The Tmux Way"},{"date":"0001-01-01","image":"","imageAlt":"","link":"http://localhost:1313/manifest/index.json","summary":"","tags":[],"title":"Manifest"},{"date":"0001-01-01","image":"","imageAlt":"","link":"http://localhost:1313/search/","summary":"","tags":[],"title":"Search"}],
+    "test": "Documenting Your Terminal Session: The Tmux Way   Manifest   Search   ",
+    "page": "1",
+    "next": ""
+}
+
