@@ -151,6 +151,10 @@ weight = 20
 [outputs]
 home = ["HTML", "JSON"]
 
+[caches]
+
+[caches.images]
+dir = ':cacheDir/images'
 
 [module]
 
